@@ -8,3 +8,28 @@ Read this:
 
 Something Try But not use yet:
 [etianen/django-herokuapp](https://github.com/etianen/django-herokuapp)
+
+
+Test on your host: 
+
+    gunicorn qblog.wsgi --log-file -
+
+    OR
+
+    heroku local(not working yet)
+
+View Heroku logs:
+
+    heroku logs
+
+Checkout Heroku server status:
+
+    heroku ps
+
+
+Whitenoise can organize you static file properly, put these in settings.py 
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
