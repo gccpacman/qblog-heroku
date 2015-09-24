@@ -6,6 +6,7 @@ Read this:
 [Getting Started with Django on Heroku | Heroku Dev Center](https://devcenter.heroku.com/articles/getting-started-with-django)
 [Configuring Django Apps for Heroku | Heroku Dev Center](https://devcenter.heroku.com/articles/django-app-configuration)
 [Building a Blog with Django 1.7 in 16 mins - YouTube](https://www.youtube.com/watch?v=7rgph8en0Jc)
+[Deploy | Django Girls 學習指南](https://djangogirlstaipei.gitbooks.io/django-girls-taipei-tutorial/content/django/deploy.html)
 
 Something Try But not use yet:
 [etianen/django-herokuapp](https://github.com/etianen/django-herokuapp)
