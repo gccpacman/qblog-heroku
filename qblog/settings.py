@@ -39,7 +39,6 @@ INSTALLED_APPS = (
 
     'blog',
     'django_markdown',
-    'herokuapp',
 )
 
 MIDDLEWARE_CLASSES = (
