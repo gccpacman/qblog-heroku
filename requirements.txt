@@ -7,3 +7,4 @@ static
 django-markdown
 wsgiref
 whitenoise
+django-herokuapp
