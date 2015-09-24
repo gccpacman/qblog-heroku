@@ -65,8 +65,11 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+
+# import dj_database_url
+# DATABASES = {
+#     'default':  dj_database_url.config()
+# }
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -88,8 +91,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfile')
 
 STATIC_URL = '/static/'
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, "templates"), )
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"), )
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
