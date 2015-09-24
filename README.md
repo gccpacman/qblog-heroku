@@ -4,6 +4,7 @@ Perview: https://young-earth-1871.herokuapp.com/
 
 Read this:
 [Getting Started with Django on Heroku | Heroku Dev Center](https://devcenter.heroku.com/articles/getting-started-with-django)
+[Configuring Django Apps for Heroku | Heroku Dev Center](https://devcenter.heroku.com/articles/django-app-configuration)
 [Building a Blog with Django 1.7 in 16 mins - YouTube](https://www.youtube.com/watch?v=7rgph8en0Jc)
 
 Something Try But not use yet:
