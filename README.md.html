@@ -1,0 +1,87 @@
+<p>This project was built to demonstrate Django especially new features of Django 1.7. It builds a blog application. More details can be found at http://arunrocks.com</p>
+
+<p>Perview: https://young-earth-1871.herokuapp.com/</p>
+
+<p>Read this:
+<a href="https://devcenter.heroku.com/articles/getting-started-with-django">Getting Started with Django on Heroku | Heroku Dev Center</a>
+<a href="https://devcenter.heroku.com/articles/django-app-configuration">Configuring Django Apps for Heroku | Heroku Dev Center</a>
+<a href="https://www.youtube.com/watch?v=7rgph8en0Jc">Building a Blog with Django 1.7 in 16 mins - YouTube</a>
+<a href="https://djangogirlstaipei.gitbooks.io/django-girls-taipei-tutorial/content/django/deploy.html">Deploy | Django Girls 學習指南</a></p>
+
+<p>Something Try But not use yet:
+<a href="https://github.com/etianen/django-herokuapp">etianen/django-herokuapp</a></p>
+
+<h2>Steps</h2>
+
+<ol>
+<li><p>Create a <em>Procfile</em>, and insert code below:</p>
+
+<p>web: gunicorn qblog.wsgi --log-file -</p></li>
+<li><p>Add these to requirement.txt, and install them by pip later:</p></li>
+</ol>
+
+<p><code>
+    dj-database-url==0.3.0
+    dj-static==0.0.6
+    gunicorn==19.1.1
+    psycopg2==2.5.1
+    static==0.4
+    wsgiref==0.1.2
+</code></p>
+
+<ol>
+<li>Replace your database settings with Heroku’s Postgres database :</li>
+</ol>
+
+<p><code>python
+    import dj_database_url
+    DATABASES = {
+        'default':  dj_database_url.config()
+    }
+</code></p>
+
+<ol>
+<li>Allow HTTPS <em>SECURE_PROXY_SSL_HEADER</em>, add code below in settings.py:</li>
+</ol>
+
+<p><code>python
+    # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+</code></p>
+
+<ol>
+<li><p>change content in wsgi.py to something like this:</p>
+
+<p>from django.core.wsgi import get<em>wsgi</em>application
+from dj_static import Cling</p>
+
+<p>application = Cling(get<em>wsgi</em>application())</p></li>
+<li><p>Deploy to Heroku, push code to heroku repo:</p>
+
+<p>$ heroku create
+$ git push heroku master</p></li>
+<li><p>Check and Visit your site:</p>
+
+<p>$ heroku ps:scale web=1
+$ heroku ps   # you should check at least one instance is running
+$ heroku open   # this will open default browser for you</p></li>
+<li><p>If it is not working , you can debug on you local machine: </p>
+
+<pre><code>$ gunicorn qblog.wsgi --log-file -
+
+
+$ heroku local   # (does not working yet.)
+</code></pre></li>
+<li><p>You also should check the remote Heroku logs:</p>
+
+<p>$ heroku logs</p></li>
+<li><p>other things to be research:</p></li>
+</ol>
+
+<p>Whitenoise can organize you static file properly, put these in settings.py </p>
+
+<h1>Simplified static file serving.</h1>
+
+<h1>https://warehouse.python.org/project/whitenoise/</h1>
+
+<p>STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'</p>

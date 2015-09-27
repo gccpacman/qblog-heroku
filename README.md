@@ -19,24 +19,30 @@ Something Try But not use yet:
 
 2. Add these to requirement.txt, and install them by pip later:
 
+```
 	dj-database-url==0.3.0
 	dj-static==0.0.6
 	gunicorn==19.1.1
 	psycopg2==2.5.1
 	static==0.4
 	wsgiref==0.1.2
+```
 
 3. Replace your database settings with Heroku’s Postgres database :
 
+``` python
     import dj_database_url
     DATABASES = {
         'default':  dj_database_url.config()
     }
+```
     
-4. Allow HTTPS SECURE_PROXY_SSL_HEADER, add code below in settings.py:
+4. Allow HTTPS *SECURE_PROXY_SSL_HEADER*, add code below in settings.py:
 
+``` python
     # Honor the 'X-Forwarded-Proto' header for request.is_secure()
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+```
 
 5. change content in wsgi.py to something like this:
 
