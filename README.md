@@ -11,23 +11,63 @@ Read this:
 Something Try But not use yet:
 [etianen/django-herokuapp](https://github.com/etianen/django-herokuapp)
 
+## Steps
 
-Test on your host: 
+1. Create a *Procfile*, and insert code below:
 
-    gunicorn qblog.wsgi --log-file -
+	web: gunicorn qblog.wsgi --log-file -
 
-    OR
+2. Add these to requirement.txt, and install them by pip later:
 
-    heroku local(not working yet)
+	dj-database-url==0.3.0
+	dj-static==0.0.6
+	gunicorn==19.1.1
+	psycopg2==2.5.1
+	static==0.4
+	wsgiref==0.1.2
 
-View Heroku logs:
+3. Replace your database settings with Heroku’s Postgres database :
 
-    heroku logs
+    import dj_database_url
+    DATABASES = {
+        'default':  dj_database_url.config()
+    }
+    
+4. Allow HTTPS SECURE_PROXY_SSL_HEADER, add code below in settings.py:
 
-Checkout Heroku server status:
+    # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    heroku ps
+5. change content in wsgi.py to something like this:
 
+    from django.core.wsgi import get_wsgi_application
+    from dj_static import Cling
+
+    application = Cling(get_wsgi_application())
+
+6. Deploy to Heroku, push code to heroku repo:
+
+    $ heroku create
+    $ git push heroku master
+
+7. Check and Visit your site:
+
+    $ heroku ps:scale web=1
+    $ heroku ps   # you should check at least one instance is running
+    $ heroku open   # this will open default browser for you
+
+8. If it is not working , you can debug on you local machine: 
+
+    	$ gunicorn qblog.wsgi --log-file -
+
+    	$ heroku local   # (does not working yet.)
+
+9. You also should check the remote Heroku logs:
+
+    $ heroku logs
+
+
+10. other things to be research:
 
 Whitenoise can organize you static file properly, put these in settings.py 
 
