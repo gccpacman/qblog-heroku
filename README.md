@@ -17,13 +17,13 @@ Something Try But not use yet:
 
 ## Steps
 
-1. Create a *Procfile*, and insert code below:
+1) Create a *Procfile*, and insert code below:
 
 ```
 	web: gunicorn qblog.wsgi --log-file -
 ```
 
-2. Add these to requirement.txt, and install them by pip later:
+2) Add these to requirement.txt, and install them by pip later:
 
 ```
 	dj-database-url==0.3.0
@@ -34,7 +34,7 @@ Something Try But not use yet:
 	wsgiref==0.1.2
 ```
 
-3. Replace your database settings with Heroku’s Postgres database :
+3) Replace your database settings with Heroku’s Postgres database :
 
 ``` python
     import dj_database_url
@@ -43,14 +43,14 @@ Something Try But not use yet:
     }
 ```
     
-4. Allow HTTPS *SECURE_PROXY_SSL_HEADER*, add code below in settings.py:
+4) Allow HTTPS *SECURE_PROXY_SSL_HEADER*, add code below in settings.py:
 
 ``` python
     # Honor the 'X-Forwarded-Proto' header for request.is_secure()
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ```
 
-5. change content in wsgi.py to something like this:
+5) change content in wsgi.py to something like this:
 
 ``` python
     from django.core.wsgi import get_wsgi_application
@@ -59,14 +59,14 @@ Something Try But not use yet:
     application = Cling(get_wsgi_application())
 ```
 
-6. Deploy to Heroku, push code to heroku repo:
+6) Deploy to Heroku, push code to heroku repo:
 
 ```
     $ heroku create
     $ git push heroku master
 ```
 
-7. Check and Visit your site:
+7) Check and Visit your site:
 
 ```
     $ heroku ps:scale web=1
@@ -74,20 +74,20 @@ Something Try But not use yet:
     $ heroku open   # this will open default browser for you
 ```
 
-8. If it is not working , you can debug on you local machine: 
+8) If it is not working , you can debug on you local machine: 
 
 ```
     $ gunicorn qblog.wsgi --log-file -
     $ heroku local   # (does not working yet.)
 ```
 
-9. You also should check the remote Heroku logs:
+9) You also should check the remote Heroku logs:
 
 ```
     $ heroku logs
 ```
 
-10. other things to be research:
+10) other things to be research:
 
 Whitenoise can organize you static file properly, put these in settings.py 
 
